@@ -57,4 +57,15 @@ with my Router BUT it still needs two arguments: my history and my routes.  On i
 create my routes.js file, I hadn't thought to import it yet.  Once you build the routes.js file, for people to be
 able to navigate to those paths, you have to pass them to the `<Router />` component somehow.
 
+## Intermission
+- At this point I am all set-up to start building.  Redux is set-up and my router is set-up for me to start building
+new containers / components.  Overall, nothing I haven't seen or done before but it was good to do everything myself.
+Next steps are to start fleshing out what the app will do and the basic look.  I'm going to bring in Bootstrap to make
+it look moderately attractive.
+
+## Header and Footer Placeholders
+- The header and footer placeholders weren't too bad.  I am so used to making class-based components that I think I'm 
+just going to make them...there doesn't appear to be a 'cost' in performance to do it that way.
+
+
 
