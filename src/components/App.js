@@ -8,7 +8,7 @@ class App extends Component {
       <div>
         <Header />
         <div className="main container-fluid">
-
+        
         </div>
 
         <Footer />
