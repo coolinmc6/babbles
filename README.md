@@ -66,6 +66,25 @@ it look moderately attractive.
 ## Header and Footer Placeholders
 - The header and footer placeholders weren't too bad.  I am so used to making class-based components that I think I'm 
 just going to make them...there doesn't appear to be a 'cost' in performance to do it that way.
-
-
+- Here is an example of the other kind of component (I believe 'functional'):
+```js
+export const Footer = () => {
+	return (
+		<div className="footer">
+			<Link to="/">All</Link>
+			<Link to="/active">Active</Link>
+			<Link to="/complete">Complete</Link>
+		</div>
+	)
+}
+```
+- to really finish up this secion, I'd need to clean-up the links but I don't yet know what I want this thing to do
+100%.
+- Links: 
+  - Left: Home, Notifications, me
+  - Center: icon
+  - Right: search, messages, settings, tweet
+- Next steps:
+1. create Babbles feed and create babble box
+1. create ability to like a babble, delete a babble
 
