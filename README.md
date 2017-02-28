@@ -41,3 +41,20 @@ a number of parts.
 - Nothing new yet but I did notice that adding the default state key in my rootReducer removes the error I get
 for passing a valid reducer.
 
+## React-Router Set-up
+- to add React-Router, I have to do a few things:
+  - import { Router, browserHistory } from React-Router
+  - import my soon-to-be-create routes.js file: `import routes from "./routes"`
+  - Replace my `<App />` component with a `<Router />` between my Provider tags
+  - remove my App import
+  - create a routes.js file 
+  - import React (from React) and { Route, IndexRoute} from React-Router
+  - import App component
+  - set-up my default path which points to App
+- Where I first encountered a problem was that I was getting an error saying that nothing matched the '/' path.
+To fix that, and this makes sense, I needed to bring in my routes file.  I may be replacing my `<App />` component
+with my Router BUT it still needs two arguments: my history and my routes.  On initial set-up, because I didn't 
+create my routes.js file, I hadn't thought to import it yet.  Once you build the routes.js file, for people to be
+able to navigate to those paths, you have to pass them to the `<Router />` component somehow.
+
+
