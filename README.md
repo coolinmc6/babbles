@@ -88,3 +88,29 @@ export const Footer = () => {
 1. create Babbles feed and create babble box
 1. create ability to like a babble, delete a babble
 
+
+## BabbleBox
+- The babble box will be a container, as in, it will be connected to Redux
+- I don't know that it will have to be connected forever but I do need to add it to an array of babbles
+- I have the input box and the button.  In previous projects, I am making a controlled input element by
+updating state every time someone clicks a key.  So each time they hit something, my state is updated.
+But by state, I am talking about component state, not global state, and Redux is a different animal.
+  - My [React Blog](https://github.com/coolinmc6/react-blog-CM/blob/master/src/components/posts_new.js) 
+  app, on the other hand, is using Redux form, which may not be as useful for this particular task.
+  - I just want to grab the value and put into a global state property of 'babbles'.
+- When I click submit, I need createBabble to be called and sent the babble that I am adding.  That action
+goes to the reducer and if the action is 'CREATE_BABBLE', it adds that babble to the array of babbles
+- I've been trying to do this incorrectly.  When I create a post, I am posting to a particular URL and
+that is that.  This app was not going to be pinging a server so everything would be internal and nothing
+would be leaving.  Therefore, my CREATE_BABBLE action doesn't need to really do anything except add it to
+my array of babbles.  
+
+
+
+
+
+
+
+
+
+

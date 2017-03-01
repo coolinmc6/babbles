@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
+import BabbleReducer from './reducer_babble'
 
 const rootReducer = combineReducers({
-	state: (state = {}) => state
+	babbles: BabbleReducer
 });
 
 export default rootReducer;
