@@ -98,12 +98,124 @@ But by state, I am talking about component state, not global state, and Redux is
   - My [React Blog](https://github.com/coolinmc6/react-blog-CM/blob/master/src/components/posts_new.js) 
   app, on the other hand, is using Redux form, which may not be as useful for this particular task.
   - I just want to grab the value and put into a global state property of 'babbles'.
-- When I click submit, I need createBabble to be called and sent the babble that I am adding.  That action
+- When I click submit, I need `createBabble()` to be called and send the babble that I am adding.  That action
 goes to the reducer and if the action is 'CREATE_BABBLE', it adds that babble to the array of babbles
-- I've been trying to do this incorrectly.  When I create a post, I am posting to a particular URL and
-that is that.  This app was not going to be pinging a server so everything would be internal and nothing
-would be leaving.  Therefore, my CREATE_BABBLE action doesn't need to really do anything except add it to
-my array of babbles.  
+- This initially gave me some trouble but I was doing a couple things wrong so I'll try to address each.  Before
+I get started, here is my code for each file to successfully create and add a babble to my babbles array:
+```js
+// ./containers/BabbleBox.js
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { createBabble } from '../actions';
+import { bindActionCreators } from 'redux';
+import { generateID } from '../utils/tools.js';
+
+class BabbleBox extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      babble: ''
+    }
+
+    this.onBabbleChange = this.onBabbleChange.bind(this);
+    this.onBabbleSubmit = this.onBabbleSubmit.bind(this);
+  }
+
+  onBabbleChange(e) {
+    this.setState({
+      babble: e.target.value
+    })
+  }
+
+  onBabbleSubmit(e) {
+    e.preventDefault();
+    const babble = { id: generateID(), user: 1, text: this.state.babble }
+    this.props.createBabble(babble);
+    this.setState({
+      babble: ''
+    });
+
+  }
+
+  render() {
+    return (
+      <div>
+        <form onSubmit={this.onBabbleSubmit}>
+          <textarea cols="40" rows="4" 
+              type="text" 
+              onChange={this.onBabbleChange}
+              value={this.state.babble}/>
+          <br />
+          <button 
+            type="submit" 
+            className="btn btn-primary">
+            babble
+          </button>
+        </form>
+        {this.props.babbles.map((babble) => {
+          return (
+            <div key={babble.id}>{babble.text}</div>
+          )
+        })}
+      </div>
+    )
+  }
+}
+
+function mapStateToProps(state) {
+  return {
+    babbles: state.babbles
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ createBabble }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BabbleBox);
+```
+```js
+// ./reducers/reducer_babble.js
+export default function(state = [], action) {
+  switch(action.type) {
+    case 'CREATE_BABBLE':
+      return [...state, action.payload];
+    default:
+      return state;
+  }
+}
+```
+```js
+// ./actions/index.js
+export const CREATE_BABBLE = 'CREATE_BABBLE';
+
+export function createBabble(babble) {
+  return {
+    type: CREATE_BABBLE,
+    payload: babble
+  }
+  
+}
+```
+- First, I struggled with creating the component to have local state.  I thought that I had set-up redux but
+in reality, I should probably do my Redux set-up and then just create a button to click that fires an 
+action through the system.  At each stop, just console.log wherever I am just to see that I everything is 
+properly connected.  One issue I had but didn't see right away was that I forgot to add `mapDispatchToProps` to 
+my connect function.  I spent 10 minutes messing around before I noticed that...get the basics set-up BEFORE
+you start adding logic.
+- Next, I struggled with what was going to be added to my global (Redux) state and my local (BabbleBox component) 
+state.  For something like this, just immediately ask yourself how long you need it.  I did NOT need the contents
+of my babble-box very long, only long enough to create a babble, so that can stay in my local state.
+- Figuring out step #2 (what does my global state need to be) helps alleviate the next problems I faced.  I was
+struggling to add my babble to an array of babbles.  A lot of that came from the confusion of not really specifying
+what it was supposed to be.  I need to be clearer from the get-go.  I don't need to save the individual babble
+text in global state but I do want to save the babble object I create to an array.  How do I add an item to an
+array WITHOUT mutating state?  I know how to do that...
+- I also mis-used the Redux tools...I was looking at Diff and not State, interpreting every new babble submission
+not as a new addition to my array, which probably was happening, but a replacement.
+- Lastly, just add objects to your reducer array, not a string or other value.  Even if the object has one value, 
+'text' for example, so what. Just get used to working with objects.
 
 
 

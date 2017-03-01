@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createBabble } from '../actions';
 import { bindActionCreators } from 'redux';
+import { generateID } from '../utils/tools.js';
 
 class BabbleBox extends Component {
 
@@ -16,7 +17,6 @@ class BabbleBox extends Component {
 	}
 
 	onBabbleChange(e) {
-		console.log(e.target.value)
 		this.setState({
 			babble: e.target.value
 		})
@@ -24,17 +24,22 @@ class BabbleBox extends Component {
 
 	onBabbleSubmit(e) {
 		e.preventDefault();
-		this.props.createBabble(this.state.babble);
+		const babble = { id: generateID(), user: 1, text: this.state.babble }
+		this.props.createBabble(babble);
+		this.setState({
+			babble: ''
+		});
 
 	}
 
 	render() {
 		return (
-			<div>
+			<div className="col-xs-12 col-sm-8">
 				<form onSubmit={this.onBabbleSubmit}>
-					<div>What's up?</div>
-					<input type="text" 
-							onChange={this.onBabbleChange}/>
+					<textarea cols="40" rows="4" 
+							type="text" 
+							onChange={this.onBabbleChange}
+							value={this.state.babble}/>
 					<br />
 					<button 
 						type="submit" 
@@ -42,6 +47,14 @@ class BabbleBox extends Component {
 						babble
 					</button>
 				</form>
+				{this.props.babbles.map((babble) => {
+					return (
+						<div key={babble.id} className='babble'>
+							{babble.text}<br />
+							<span className="glyphicon glyphicon-heart" aria-hidden="true"></span>
+						</div>
+					)
+				})}
 			</div>
 		)
 	}
