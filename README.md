@@ -217,8 +217,65 @@ not as a new addition to my array, which probably was happening, but a replaceme
 - Lastly, just add objects to your reducer array, not a string or other value.  Even if the object has one value, 
 'text' for example, so what. Just get used to working with objects.
 
+## Adding Sass
+- Facebook's [README](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-css-preprocessor-sass-less-etc) on the create-react-app CLI is pretty 
+good so just take a look at that.  But here are the basics steps to adding sass:
+- install Sass
+```sh
+npm install node-sass --save-dev
+```
+- Add scripts to package.json:
+```json
+   "scripts": {
++    "build-css": "node-sass src/ -o src/",
++    "watch-css": "npm run build-css && node-sass src/ -o src/ --watch --recursive",
+     "start": "react-scripts start",
+     "build": "react-scripts build",
+     "test": "react-scripts test --env=jsdom",
+```
+- I can now tell sass to watch my index.scss file:
+```sh
+npm run watch-css
+```
 
-
+## Layout for a single Babble:
+```html
+<div class="babble">
+  <div class="babble-user-row">
+    <img src="https://randomuser.me/api/portraits/men/59.jpg" alt="" class="user-pic">
+    <div class="user-name">
+      User Name <br>
+      <span class="user-handle">@userhandle62</span>
+    </div>
+    
+    <div class="follow-user">
+      <span class="glyphicon glyphicon-share-alt"></span>
+    </div>
+  </div>
+  <div class="babble-text-row">
+    <div class="babble-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+    Recusandae accusamus consequuntur dolore aliquam repudiandae? Illum!</div>
+    <div class="babble-time">6:00pm - 01 Mar 17</div>
+  </div>
+  <div class="babble-action-row">
+    <div class="babble-like">
+      <span class="glyphicon glyphicon-heart"></span>
+    </div>
+  </div>
+  
+</div>
+```
+- It's not great but I've updated my Babble creator to give it a timestamp, a user, a handle, the message itself, and 
+a timestamp.  I think I'm good with that stuff for now.
+- I want to do a number of things next:
+  - create some default users that are friends with the main user
+  - have my feed show some action from other users
+  - Create users in the background that the main user can search for
+  - Create the ability to like a tweet
+  - 
+- CM => just get shit done and then refactor.  Feel the pain of doing something inefficiently (BUT GET IT DONE) so that 
+you know WHY it should be done some other way. I am trying to applying a more advanced way of completing this without
+actually having the skills to do it right now.
 
 
 

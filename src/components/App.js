@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from './header';
 import Footer from './footer';
 import BabbleBox from '../containers/BabbleBox';
+import UserInfo from '../containers/UserInfo';
 
 class App extends Component {
   render() {
@@ -9,7 +10,9 @@ class App extends Component {
       <div>
         <Header />
         <div className="main container-fluid">
+          <UserInfo />
           <BabbleBox />
+          
         
         </div>
 

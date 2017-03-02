@@ -7,6 +7,9 @@ import reducers from './reducers';
 import { Router, browserHistory } from 'react-router';
 import routes from "./routes";
 
+
+// userCreator();
+
 import './index.css';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);

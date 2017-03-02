@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createBabble } from '../actions';
 import { bindActionCreators } from 'redux';
-import { generateID } from '../utils/tools.js';
+import { generateID, timeStamp, userCreator } from '../utils/tools.js';
+
+
+setInterval(() => {userCreator()}, 1000);
 
 class BabbleBox extends Component {
 
@@ -24,7 +27,17 @@ class BabbleBox extends Component {
 
 	onBabbleSubmit(e) {
 		e.preventDefault();
-		const babble = { id: generateID(), user: 1, text: this.state.babble }
+		const handle = 'coolinmc6';
+		const username = 'Colin McNamara'
+		const timestamp = timeStamp();
+		const babble = { 
+			id: generateID(), 
+			text: this.state.babble, 
+			date: timestamp,
+			user: username,
+			handle: '@' + handle
+		}
+
 		this.props.createBabble(babble);
 		this.setState({
 			babble: ''
@@ -34,7 +47,7 @@ class BabbleBox extends Component {
 
 	render() {
 		return (
-			<div className="col-xs-12 col-sm-8">
+			<div className="col-xs-12 col-sm-4 babble-parent">
 				<form onSubmit={this.onBabbleSubmit}>
 					<textarea cols="40" rows="4" 
 							type="text" 
@@ -47,11 +60,30 @@ class BabbleBox extends Component {
 						babble
 					</button>
 				</form>
+
 				{this.props.babbles.map((babble) => {
 					return (
 						<div key={babble.id} className='babble'>
-							{babble.text}<br />
-							<span className="glyphicon glyphicon-heart" aria-hidden="true"></span>
+							<div className="babble-user-row">
+							  <img src="https://randomuser.me/api/portraits/men/48.jpg" alt="" className="user-pic"/>
+							  <div className="user-name">
+							    {babble.user} <br/>
+							    <span className="user-handle">{babble.handle}</span>
+							  </div>
+							  
+							  <div className="follow-user">
+							    <span className="glyphicon glyphicon-share-alt"></span>
+							  </div>
+							</div>
+							<div className="babble-text-row">
+							  <div className="babble-text">{babble.text}</div>
+							  <div className="babble-time">{babble.date}</div>
+							</div>
+							<div className="babble-action-row">
+							  <div className="babble-like">
+							    <span className="glyphicon glyphicon-heart"></span>
+							  </div>
+							</div>
 						</div>
 					)
 				})}
