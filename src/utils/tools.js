@@ -1,4 +1,6 @@
+
 export const generateID = () => Math.floor(Math.random()*1000000);
+export const generateSmall = () => Math.floor(Math.random()*90);
 
 export const timeStamp = () => {
 	const monthNames = [
@@ -21,6 +23,4 @@ export const timeStamp = () => {
 	return timestamp;
 }
 
-export const userCreator = () => {
-	console.log('this is a new user');
-}
+

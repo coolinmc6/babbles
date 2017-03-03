@@ -274,9 +274,30 @@ a timestamp.  I think I'm good with that stuff for now.
   - Create the ability to like a tweet
   - 
 - CM => just get shit done and then refactor.  Feel the pain of doing something inefficiently (BUT GET IT DONE) so that 
-you know WHY it should be done some other way. I am trying to applying a more advanced way of completing this without
+you know WHY it should be done some other way. I am trying to apply a more advanced way of completing this without
 actually having the skills to do it right now.
+- Giving my app an initial state was easier than I had expected:
+```js
+const INITIAL_STATE = [
+  { id: 1, text: "Welcome to babble", date: timeStamp(), user: 'Colin McNamara', handle: '@coolinmc6'},
+  { id: 2, text: "Here is another babble", date: timeStamp(), user: 'Colin McNamara', handle: '@coolinmc6'}
+]
+```
+- Create a feed generator
+  - it just needs to spit out random babbles from random users
 
+## Random Babble Generator
+- So I was able to do it but it took awhile.  Here's the big thing that tripped me up: calling a class function inside
+my class curly braces required me to use `this.function()` to call it.  One thing I tried was calling the action OUTSIDE
+of my container.  Now I am sure there are other ways to do this BUT I was creating actions that were not going through
+my reducers!  I only change state by going through my reducers.  Connect is what connects my reducers & aciton creators
+(Redux) to my component (React).  I call anything I want outside of that loop but it won't change my state like I want it to.
+- As I said, the solution was in creating a function that would start churning out babbles.  I ultimately saw that I
+could initiate the function using a lifecycle method, componentDidMount.  It would then call my function, `this.random()`, 
+which could then call my action `this.props.createBabble`.
+- Take-aways:
+  - class-based functions are called using: `this.function()`
+  - Non-user-initiated action creators STILL have to be connect to reducers for them to change state.
 
 
 

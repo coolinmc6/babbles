@@ -2,22 +2,52 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createBabble } from '../actions';
 import { bindActionCreators } from 'redux';
-import { generateID, timeStamp, userCreator } from '../utils/tools.js';
+import { generateID, generateSmall, timeStamp } from '../utils/tools.js';
 
 
-setInterval(() => {userCreator()}, 1000);
 
 class BabbleBox extends Component {
 
 	constructor() {
 		super();
 		this.state = {
-			babble: ''
+			babble: '',
+			count: 0
 		}
 
 		this.onBabbleChange = this.onBabbleChange.bind(this);
 		this.onBabbleSubmit = this.onBabbleSubmit.bind(this);
+		
 	}
+
+	random() {
+		setInterval(()=>{
+			const handle = 'randomuser';
+			const username = 'random' + generateSmall();
+			const timestamp = timeStamp();
+			const imgNum = generateSmall();
+			const babble = { 
+				id: generateID(), 
+				text: "What's up??", 
+				date: timestamp,
+				user: username,
+				handle: '@' + handle,
+				img: `https://randomuser.me/api/portraits/men/${imgNum}.jpg`
+
+			}
+			this.props.createBabble(babble)
+		}, 13000);
+	}
+
+	componentDidMount() {
+		console.log('Component has mounted');
+		let count = this.state.count++
+		this.setState({ count });
+		console.log('Count is now: ', this.state.count)
+		this.random();
+	}
+
+	
 
 	onBabbleChange(e) {
 		this.setState({
@@ -30,12 +60,15 @@ class BabbleBox extends Component {
 		const handle = 'coolinmc6';
 		const username = 'Colin McNamara'
 		const timestamp = timeStamp();
+		const imgNum = generateSmall();
 		const babble = { 
 			id: generateID(), 
-			text: this.state.babble, 
+			text: "What's up??", 
 			date: timestamp,
 			user: username,
-			handle: '@' + handle
+			handle: '@' + handle,
+			img: 'https://randomuser.me/api/portraits/men/42.jpg'
+
 		}
 
 		this.props.createBabble(babble);
@@ -45,7 +78,12 @@ class BabbleBox extends Component {
 
 	}
 
+	Random() {
+		
+	}
+
 	render() {
+
 		return (
 			<div className="col-xs-12 col-sm-4 babble-parent">
 				<form onSubmit={this.onBabbleSubmit}>
@@ -60,12 +98,12 @@ class BabbleBox extends Component {
 						babble
 					</button>
 				</form>
-
+				
 				{this.props.babbles.map((babble) => {
 					return (
 						<div key={babble.id} className='babble'>
 							<div className="babble-user-row">
-							  <img src="https://randomuser.me/api/portraits/men/48.jpg" alt="" className="user-pic"/>
+							  <img src={`${babble.img}`} alt="" className="user-pic"/>
 							  <div className="user-name">
 							    {babble.user} <br/>
 							    <span className="user-handle">{babble.handle}</span>
@@ -91,6 +129,8 @@ class BabbleBox extends Component {
 		)
 	}
 }
+
+
 
 function mapStateToProps(state) {
 	return {

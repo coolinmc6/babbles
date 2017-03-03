@@ -14,6 +14,12 @@ body {
 .babble-parent {
 	border: 1px solid black;
 	padding-bottom: 1rem;
+	min-height: 90vh;
+	// overflow: scroll;
+	textarea {
+		width: 100%;
+		margin-top: 0.5rem;
+	}
 }
 
 .babble {
@@ -21,7 +27,7 @@ body {
 	border: 1px solid blue;
 	-webkit-border-radius: 5px;
 	        border-radius: 5px;
-	
+	margin: 0.5rem 0rem;
 	.babble-user-row {
 		position: relative;
 		padding: 1rem;
