@@ -3,6 +3,7 @@ import Header from './header';
 import BabbleBox from '../containers/BabbleBox';
 import UserInfo from '../containers/UserInfo';
 
+
 class App extends Component {
   render() {
     return (
