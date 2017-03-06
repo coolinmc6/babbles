@@ -299,8 +299,18 @@ which could then call my action `this.props.createBabble`.
   - class-based functions are called using: `this.function()`
   - Non-user-initiated action creators STILL have to be connect to reducers for them to change state.
 
+## Like a Babble
+- How do I like a babble? 
+  - Boolean: true or false whether that tweet is liked
+  - true ? red : black;
+  - So when I click on it, it toggles a property that says whether it is liked or not.  Right now, I'll just have each
+  babble have a single column that they like or not like but a broader app would probably have a table of likes.  It would
+  be the babbleID and the userID of the person that liked it
+  - I need to build an action creator that toggles the like button
+    - how do I do that?  How do I modify one property on a babble?
 
-
+- I am struggling but I've decided that, for now, I'm going to refactor my code and put my feed into a separate component.
+I'll pass the babbles down to BabbleFeed as a prop and handle the edits down there.
 
 
 

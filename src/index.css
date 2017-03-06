@@ -76,7 +76,11 @@ body {
   padding-right: 2.5rem;
   padding-top: 0.5rem;
   font-size: 1.8rem;
-  color: #black; }
+  color: #black;
+  cursor: pointer; }
+
+.babble .babble-action-row .liked {
+  color: red; }
 
 .user-info {
   border: 1px solid black; }

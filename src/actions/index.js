@@ -1,6 +1,7 @@
 // import axios from 'axios';
 
 export const CREATE_BABBLE = 'CREATE_BABBLE';
+export const TOGGLE_LIKE = 'TOGGLE_LIKE';
 
 export function createBabble(babble) {
 	return {
@@ -8,4 +9,11 @@ export function createBabble(babble) {
 		payload: babble
 	}
 	
+}
+
+export function toggleLike(likeObj) {
+	return {
+		type: TOGGLE_LIKE,
+		payload: likeObj
+	}
 }
