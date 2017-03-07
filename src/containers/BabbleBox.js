@@ -81,40 +81,14 @@ class BabbleBox extends Component {
 	}
 
 	onLikeToggle(id) {
-		const like = { user: 'coolinmc6', babbleID: id }
-		// console.log(like);
+		const like = { likeID: generateID(), username: 'coolinmc6', babbleID: id}
+		this.props.toggleLike(like)
+		console.log(this.props.likes);
+		
+		
+
 
 	}
-
-	renderBabbles() {
-		return this.props.babbles.map((babble) => {
-			return (
-				<div key={babble.id} className='babble'>
-					<div className="babble-user-row">
-					  <img src={`${babble.img}`} alt="" className="user-pic"/>
-					  <div className="user-name">
-					    {babble.user} <br/>
-					    <span className="user-handle">{babble.handle}</span>
-					  </div>
-					  
-					  <div className="follow-user">
-					    <span className="glyphicon glyphicon-share-alt"></span>
-					  </div>
-					</div>
-					<div className="babble-text-row">
-					  <div className="babble-text">{babble.text}</div>
-					  <div className="babble-time">{babble.date}</div>
-					</div>
-					<div className="babble-action-row">
-					  <div className="babble-like">
-					    <span className="glyphicon glyphicon-heart liked"></span>
-					  </div>
-					</div>
-				</div>
-			)
-		})
-	}
-
 
 
 	render() {
@@ -133,8 +107,7 @@ class BabbleBox extends Component {
 						babble
 					</button>
 				</form>
-				<BabbleFeed babbles={this.props.babbles}/>
-				{/* this.renderBabbles() */	}
+				<BabbleFeed babbles={this.props.babbles} likeToggle={this.onLikeToggle}/>
 			</div>
 		)
 	}
@@ -144,7 +117,8 @@ class BabbleBox extends Component {
 
 function mapStateToProps(state) {
 	return {
-		babbles: state.babbles
+		babbles: state.babbles,
+		likes: state.likes
 	}
 }
 

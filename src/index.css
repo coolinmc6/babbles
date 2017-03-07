@@ -14,10 +14,9 @@ body {
   border: 1px solid black;
   padding-bottom: 1rem;
   min-height: 90vh; }
-
-.babble-parent textarea {
-  width: 100%;
-  margin-top: 0.5rem; }
+  .babble-parent textarea {
+    width: 100%;
+    margin-top: 0.5rem; }
 
 .babble {
   width: 100%;
@@ -25,62 +24,50 @@ body {
   -webkit-border-radius: 5px;
   border-radius: 5px;
   margin: 0.5rem 0rem; }
-
-.babble .babble-user-row {
-  position: relative;
-  padding: 1rem; }
-
-.babble .babble-user-row .user-pic {
-  width: 70px;
-  border-radius: 7px; }
-
-.babble .babble-user-row .user-name, .babble .babble-user-row .user-handle {
-  display: inline-block;
-  vertical-align: top; }
-
-.babble .babble-user-row .user-name {
-  font-size: 1.7rem;
-  padding: 1rem; }
-
-.babble .babble-user-row .user-handle {
-  color: #999;
-  font-weight: bold;
-  font-size: 1.5rem; }
-
-.babble .babble-user-row .follow-user {
-  display: inline-block;
-  position: absolute;
-  right: 2rem;
-  top: 2rem;
-  font-size: 1.5rem; }
-
-.babble .babble-text-row {
-  padding: 1rem; }
-
-.babble .babble-text-row .babble-text {
-  font-size: 1.8rem; }
-
-.babble .babble-text-row .babble-time {
-  font-family: monospace;
-  font-weight: 700;
-  font-size: 1.2rem;
-  color: #999; }
-
-.babble .babble-action-row {
-  position: relative;
-  height: 3rem;
-  border-top: 1px solid #999; }
-
-.babble .babble-action-row .babble-like {
-  float: right;
-  padding-right: 2.5rem;
-  padding-top: 0.5rem;
-  font-size: 1.8rem;
-  color: #black;
-  cursor: pointer; }
-
-.babble .babble-action-row .liked {
-  color: red; }
+  .babble .babble-user-row {
+    position: relative;
+    padding: 1rem; }
+    .babble .babble-user-row .user-pic {
+      width: 70px;
+      border-radius: 7px; }
+    .babble .babble-user-row .user-name, .babble .babble-user-row .user-handle {
+      display: inline-block;
+      vertical-align: top; }
+    .babble .babble-user-row .user-name {
+      font-size: 1.7rem;
+      padding: 1rem; }
+    .babble .babble-user-row .user-handle {
+      color: #999;
+      font-weight: bold;
+      font-size: 1.5rem; }
+    .babble .babble-user-row .follow-user {
+      display: inline-block;
+      position: absolute;
+      right: 2rem;
+      top: 2rem;
+      font-size: 1.5rem; }
+  .babble .babble-text-row {
+    padding: 1rem; }
+    .babble .babble-text-row .babble-text {
+      font-size: 1.8rem; }
+    .babble .babble-text-row .babble-time {
+      font-family: monospace;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #999; }
+  .babble .babble-action-row {
+    position: relative;
+    height: 3rem;
+    border-top: 1px solid #999; }
+    .babble .babble-action-row .babble-like {
+      float: right;
+      padding-right: 2.5rem;
+      padding-top: 0.5rem;
+      font-size: 1.8rem;
+      color: #black;
+      cursor: pointer; }
+    .babble .babble-action-row .liked {
+      color: red; }
 
 .user-info {
   border: 1px solid black; }

@@ -310,7 +310,13 @@ which could then call my action `this.props.createBabble`.
     - how do I do that?  How do I modify one property on a babble?
 
 - I am struggling but I've decided that, for now, I'm going to refactor my code and put my feed into a separate component.
-I'll pass the babbles down to BabbleFeed as a prop and handle the edits down there.
+- How do I create a new state property that contains only the likes?  
+  - It's an array of objects with the likeID, username, babbleID
+  - I can't seem to get a click on a heart to
+- I have gotten closer, the key piece of code is this: `onClick={() => this.props.likeToggle(babble.id)}`.  I twas just doing
+this.props.likeToggle(babble.id) or just likeToggle(babble.id).  I couldn't figure out what it wouldn't work and I ended up
+referring to a past project.  I need to understand the range of possibilities on how to call something in onClick...it's not
+intuitive.
 
 
 
