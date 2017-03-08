@@ -312,11 +312,30 @@ which could then call my action `this.props.createBabble`.
 - I am struggling but I've decided that, for now, I'm going to refactor my code and put my feed into a separate component.
 - How do I create a new state property that contains only the likes?  
   - It's an array of objects with the likeID, username, babbleID
-  - I can't seem to get a click on a heart to
 - I have gotten closer, the key piece of code is this: `onClick={() => this.props.likeToggle(babble.id)}`.  I twas just doing
 this.props.likeToggle(babble.id) or just likeToggle(babble.id).  I couldn't figure out what it wouldn't work and I ended up
 referring to a past project.  I need to understand the range of possibilities on how to call something in onClick...it's not
 intuitive.
+- When I toggle a like, I am adding or removing them from an array of likes.  So when I click remove, I am simply adding it
+or removing it.  So maybe I need another property; if it exists.
+
+### New Direction
+- If I have a table of likes, I'll need the username and babbleID
+  - Action: when someone clicks on a heart, it creates a new 'like' that is added to an array of likes with the username and 
+  babbleID
+  - COMPLETE: right now, with each click, I am creating a new like (which means a new likeID) BUT with the same username and
+  babbleID.  I now need to check, when I render each like, whether it has been liked or not
+- Reflect the liked status in the heart by turning it red.  I need to do this by checking the array
+  - Action: when each babble is rendered, check the array of likes by the babbleID (one function) that spits out whether it is
+  liked or not
+    - pass down likes via props to BabbleFeed
+    - call function each time a babble renders and output a string to make sure it works
+    - search array of likes for a babble.ID to equal the inputted babble.ID
+      - I am getting hung up on the fact that my function does not "wait" for the funciton to execute
+    - create an action to delete a like
+- When a liked babble is clicked again, that like is removed from the array
+  - Action:
+
 
 
 

@@ -82,11 +82,8 @@ class BabbleBox extends Component {
 
 	onLikeToggle(id) {
 		const like = { likeID: generateID(), username: 'coolinmc6', babbleID: id}
-		this.props.toggleLike(like)
-		console.log(this.props.likes);
-		
-		
-
+		console.log(like.likeID)
+		this.props.toggleLike(like);
 
 	}
 
@@ -107,7 +104,9 @@ class BabbleBox extends Component {
 						babble
 					</button>
 				</form>
-				<BabbleFeed babbles={this.props.babbles} likeToggle={this.onLikeToggle}/>
+				<BabbleFeed babbles={this.props.babbles} 
+							likes={this.props.likes}
+							likeToggle={this.onLikeToggle}/>
 			</div>
 		)
 	}
