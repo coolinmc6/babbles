@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createBabble, toggleLike } from '../actions';
 import { bindActionCreators } from 'redux';
-import { generateID, generateSmall, timeStamp } from '../utils/tools.js';
+import { generateID, generateSmall, timeStamp } from '../utils/tools';
+import { findBabbleByID } from '../utils/helpers'
 import BabbleFeed from './BabbleFeed';
 
 
@@ -20,6 +21,7 @@ class BabbleBox extends Component {
 		this.onBabbleChange = this.onBabbleChange.bind(this);
 		this.onBabbleSubmit = this.onBabbleSubmit.bind(this);
 		this.onLikeToggle = this.onLikeToggle.bind(this);
+		this.onLikeToggleBabble = this.onLikeToggleBabble.bind(this);
 		
 	}
 
@@ -35,7 +37,8 @@ class BabbleBox extends Component {
 				date: timestamp,
 				user: username,
 				handle: '@' + handle,
-				img: `https://randomuser.me/api/portraits/men/${imgNum}.jpg`
+				img: `https://randomuser.me/api/portraits/men/${imgNum}.jpg`,
+				liked: false
 
 			}
 			this.props.createBabble(babble)
@@ -68,7 +71,8 @@ class BabbleBox extends Component {
 			date: timestamp,
 			user: username,
 			handle: '@' + handle,
-			img: 'https://randomuser.me/api/portraits/men/42.jpg'
+			img: 'https://randomuser.me/api/portraits/men/42.jpg',
+			liked: false
 
 		}
 
@@ -84,6 +88,11 @@ class BabbleBox extends Component {
 		const like = { likeID: generateID(), username: 'coolinmc6', babbleID: id}
 		console.log(like.likeID)
 		this.props.toggleLike(like);
+
+	}
+
+	onLikeToggleBabble(babbleID) {
+		console.log(babbleID)
 
 	}
 
@@ -106,7 +115,8 @@ class BabbleBox extends Component {
 				</form>
 				<BabbleFeed babbles={this.props.babbles} 
 							likes={this.props.likes}
-							likeToggle={this.onLikeToggle}/>
+							likeToggle={this.onLikeToggle}
+							likeToggleBabble={this.onLikeToggleBabble}/>
 			</div>
 		)
 	}

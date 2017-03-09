@@ -8,6 +8,8 @@ const INITIAL_STATE = [
 		handle: '@coolinmc6', img: 'https://randomuser.me/api/portraits/men/42.jpg'}
 ]
 
+
+
 export default function(state = INITIAL_STATE, action) {
 	switch(action.type) {
 		case CREATE_BABBLE:

@@ -334,7 +334,8 @@ or removing it.  So maybe I need another property; if it exists.
       - I am getting hung up on the fact that my function does not "wait" for the funciton to execute
     - create an action to delete a like
 - When a liked babble is clicked again, that like is removed from the array
-  - Action:
+- I am struggling and I can't quite figure out why.  I think I will put this on hold and create a new project without Redux
+and then try again after making sure that I CAN do this without Redux.
 
 
 

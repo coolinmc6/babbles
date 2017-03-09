@@ -14,6 +14,26 @@ export default class BabbleFeed extends Component {
 		return babbleID + 'yes';	
 	}
 
+	isBabbleLiked(babbleID) {
+		const liked = this.props.likes.map((like) => {
+			return like.babbleID === babbleID;
+		})
+		console.log(liked)
+	}
+
+	isTrue(babbleID) {
+		const like = this.props.likes.filter((like) => {
+	    	return babbleID === like.babbleID
+	    })
+	    if (like != '') {
+	    	return false;	
+	    } else {
+	    	return true
+	    }
+
+		
+	}
+
 	
 
 	render() {
@@ -41,11 +61,8 @@ export default class BabbleFeed extends Component {
 							</div>
 							<div className="babble-action-row">
 							  <div className="babble-like">
-							    <span className={`glyphicon glyphicon-heart ${this.props.likes.map((like) => {
-							    	console.log('Span console:', babble.id)
-							    	return babble.id == like.babbleID ? ' liked' : ''
-						    	})}`}
-							    		onClick={() => this.props.likeToggle(babble.id)}></span>
+							    <span className={`glyphicon glyphicon-heart`}
+							    		onClick={() => this.props.likeToggleBabble(babble.id)}></span>
 							  </div>
 							</div>
 						</div>
